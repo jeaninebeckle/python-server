@@ -1,24 +1,27 @@
 EMPLOYEES = [
     {
         "id": 1,
-        "name": "Suzy",
-        "position": "Manager",
-        "employeeId": 1,
-        "customerId": 4
+        "name": "Sally",
+        "location": 2,
+        "manager": True,
+        "full time": True,
+        "hourly rate": 20
     },
     {
         "id": 2,
-        "name": "Jim",
-        "position": "Cashier",
-        "employeeId": 1,
-        "customerId": 2
+        "name": "Fred",
+        "location": 1,
+        "manager": False,
+        "full time": True,
+        "hourly rate": 13
     },
     {
         "id": 3,
-        "name": "Fred",
-        "position": "Janitor",
-        "employeeId": 2,
-        "customerId": 1
+        "name": "Erin",
+        "location": 3,
+        "manager": False,
+        "full time": False,
+        "hourly rate": 15
     }
 ]
 

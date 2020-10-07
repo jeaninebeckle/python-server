@@ -1,24 +1,18 @@
 LOCATIONS = [
     {
         "id": 1,
-        "city": "Orlando",
-        "state": "Florida",
-        "locationId": 1,
-        "customerId": 4
+        "name": "Nashville North",
+        "address": "8422 Johnson Pike"
     },
     {
         "id": 2,
-        "city": "Fargo",
-        "state": "North Dakota",
-        "locationId": 1,
-        "customerId": 2
+        "name": "Nashville South",
+        "address": "209 Emory Drive"
     },
     {
-        "id": 3,
-        "city": "Naperville",
-        "state": "Illinois",
-        "locationId": 2,
-        "customerId": 1
+        "id": 2,
+        "name": "Nashville West",
+        "address": "100 Charlotte Pike"
     }
 ]
 
