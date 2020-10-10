@@ -1,30 +1,35 @@
 LOCATIONS = [
     {
         "id": 1,
-        "city": "Orlando",
-        "state": "Florida",
-        "locationId": 1,
-        "customerId": 4
+        "name": "Nashville North",
+        "address": "8422 Johnson Pike"
     },
     {
         "id": 2,
-        "city": "Fargo",
-        "state": "North Dakota",
-        "locationId": 1,
-        "customerId": 2
+        "name": "Nashville South",
+        "address": "209 Emory Drive"
     },
     {
-        "id": 3,
-        "city": "Naperville",
-        "state": "Illinois",
-        "locationId": 2,
-        "customerId": 1
+        "id": 2,
+        "name": "Nashville West",
+        "address": "100 Charlotte Pike"
     }
 ]
 
 
 def get_all_locations():
     return LOCATIONS
+
+def create_location(location):
+    max_id = LOCATIONS[-1]["id"]
+
+    new_id = max_id + 1
+
+    location["id"] = new_id
+
+    LOCATIONS.append(location)
+
+    return location
 
     
 def get_single_location(id):

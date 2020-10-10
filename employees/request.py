@@ -1,30 +1,44 @@
 EMPLOYEES = [
     {
         "id": 1,
-        "name": "Suzy",
-        "position": "Manager",
-        "employeeId": 1,
-        "customerId": 4
+        "name": "Sally",
+        "location": 2,
+        "manager": True,
+        "full time": True,
+        "hourly rate": 20
     },
     {
         "id": 2,
-        "name": "Jim",
-        "position": "Cashier",
-        "employeeId": 1,
-        "customerId": 2
+        "name": "Fred",
+        "location": 1,
+        "manager": False,
+        "full time": True,
+        "hourly rate": 13
     },
     {
         "id": 3,
-        "name": "Fred",
-        "position": "Janitor",
-        "employeeId": 2,
-        "customerId": 1
+        "name": "Erin",
+        "location": 3,
+        "manager": False,
+        "full time": False,
+        "hourly rate": 15
     }
 ]
 
 
 def get_all_employees():
     return EMPLOYEES
+
+def create_employee(employee):
+    max_id = EMPLOYEES[-1]["id"]
+
+    new_id = max_id + 1
+
+    employee["id"] = new_id
+
+    EMPLOYEES.append(employee)
+
+    return employee
 
     
 def get_single_employee(id):
