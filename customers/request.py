@@ -27,7 +27,7 @@ def create_customer(customer):
 
     new_id = max_id + 1
 
-    customer.id = new_id
+    customer["id"] = new_id
 
     new_customer = Customer(customer['id'], customer['name'], customer['address'])
     CUSTOMERS.append(new_customer)
