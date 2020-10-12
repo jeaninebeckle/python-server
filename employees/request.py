@@ -1,28 +1,9 @@
+from models.employee import Employee
+
 EMPLOYEES = [
-    {
-        "id": 1,
-        "name": "Sally",
-        "location": 2,
-        "manager": True,
-        "full time": True,
-        "hourly rate": 20
-    },
-    {
-        "id": 2,
-        "name": "Fred",
-        "location": 1,
-        "manager": False,
-        "full time": True,
-        "hourly rate": 13
-    },
-    {
-        "id": 3,
-        "name": "Erin",
-        "location": 3,
-        "manager": False,
-        "full time": False,
-        "hourly rate": 15
-    }
+    Employee(1, 'Sally', 2, True, True, 20),
+    Employee(2, 'Fred', 1, False, True, 13),
+    Employee(3, 'Erin', 3, False, False, 15)
 ]
 
 
@@ -30,13 +11,14 @@ def get_all_employees():
     return EMPLOYEES
 
 def create_employee(employee):
-    max_id = EMPLOYEES[-1]["id"]
+    max_id = EMPLOYEES[-1].id
 
     new_id = max_id + 1
 
     employee["id"] = new_id
 
-    EMPLOYEES.append(employee)
+    new_employee = Employee(employee['id'], employee['name'], employee['location'], employee['manager'], employee['full_time'], employee['hourly_rate'])
+    EMPLOYEES.append(new_employee)
 
     return employee
 
@@ -48,7 +30,7 @@ def get_single_employee(id):
     for employee in EMPLOYEES:
         # Dictionaries in Python use [] notation to find a key
         # instead of the dot notation that JavaScript used.
-        if employee["id"] == id:
+        if employee.id == id:
             requested_employee = employee
 
     return requested_employee
@@ -57,7 +39,7 @@ def delete_employee(id):
     employee_index = -1
 
     for index, employee in enumerate(EMPLOYEES):
-        if employee["id"] == id:
+        if employee.id == id:
             employee_index = index
 
     if employee_index >= 0:
@@ -65,6 +47,6 @@ def delete_employee(id):
 
 def update_employee(id, new_employee):
     for index, employee in enumerate(EMPLOYEES):
-        if employee["id"] == id:
-            EMPLOYEES[index] = new_employee
+        if employee.id == id:
+            EMPLOYEES[index] = Employee(new_employee['id'], new_employee['name'], new_employee['location'], new_employee['manager'], new_employee['full_time'], new_employee['hourly_rate'])
             break
