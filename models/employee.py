@@ -12,6 +12,6 @@ class Employee():
         self.hourly_rate = hourly_rate
 
     def __repr__(self):
-        return f"{self.name} is an employee"
+        return f"{self.name} is an employee and makes ${self.hourly_rate} an hour."
 
 employee = Employee(1, 'Sally', 2, True, True, 20)
