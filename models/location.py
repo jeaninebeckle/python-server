@@ -11,4 +11,4 @@ class Location():
     def __repr__(self):
         return f"{self.name} is at {self.address}"
 
-location = Location(1, 'Nashville North', "8422 Johnson Pike")
+# location = Location(1, 'Nashville North', "8422 Johnson Pike")
