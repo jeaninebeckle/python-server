@@ -89,7 +89,6 @@ SELECT
 FROM location a
 WHERE a.id=2
 
-SELECT * from animal
-UPDATE animal
-SET breed = 'Dalmation'
-WHERE id = 1
+SELECT * from customer
+DELETE FROM customer
+WHERE id = 4

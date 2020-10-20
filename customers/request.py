@@ -3,11 +3,7 @@ import json
 
 from models.customer import Customer
 
-CUSTOMERS = [
-    # Customer(1, 'Hannah Hall', '7002 Chestnut Ct'),
-    # Customer(2, 'Brian Neal', '500 Main St'),
-    # Customer(3, 'Mitchell Blom', '912 Germany St')
-]
+CUSTOMERS = []
 
 def get_all_customers():
         # Open a connection to the database
@@ -81,20 +77,39 @@ def create_customer(customer):
     return customer
 
 def delete_customer(id):
-    customer_index = -1
+    with sqlite3.connect("./kennel.db") as conn:
+        db_cursor = conn.cursor()
 
-    for index, customer in enumerate(CUSTOMERS):
-        if customer.id == id:
-            customer_index = index
-
-    if customer_index >= 0:
-        CUSTOMERS.pop(customer_index)
+        db_cursor.execute("""
+        DELETE FROM customer
+        WHERE id = ?
+        """, (id, ))
 
 def update_customer(id, new_customer):
-    for index, customer in enumerate(CUSTOMERS):
-        if customer.id == id:
-            CUSTOMERS[index] = Customer(new_customer['id'], new_customer['name'], new_customer['address'], new_customer['email'], new_customer['password'])
-            break
+    with sqlite3.connect("./kennel.db") as conn:
+        db_cursor = conn.cursor()
+
+        db_cursor.execute("""
+        UPDATE customer
+            SET
+                name = ?,
+                address = ?,
+                email = ?,
+                password = ?       
+        WHERE id = ?
+        """, (new_customer['name'], new_customer['address'],
+              new_customer['email'], new_customer['password'], id, ))
+
+        # Were any rows affected?
+        # Did the client send an `id` that exists?
+        rows_affected = db_cursor.rowcount
+
+    if rows_affected == 0:
+        # Forces 404 response by main module
+        return False
+    else:
+        # Forces 204 response by main module
+        return True
 
 def get_customers_by_email(email):
 

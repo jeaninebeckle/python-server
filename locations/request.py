@@ -3,11 +3,7 @@ import json
 
 from models.location import Location
 
-LOCATIONS = [
-    # Location(1, "Nashville North", "8422 Johnson Pike"),
-    # Location(2, 'Nashville South', "209 Emory Drive"),
-    # Location(3, 'Nashville West', "100 Charlotte Pike")
-]
+LOCATIONS = []
 
 def get_all_locations():
     with sqlite3.connect("./kennel.db") as conn:
@@ -70,31 +66,35 @@ def create_location(location):
 
     return location
 
-    
-# def get_single_location(id):
-   
-#     requested_location = None
-
-#     for location in LOCATIONS:
-#         # Dictionaries in Python use [] notation to find a key
-#         # instead of the dot notation that JavaScript used.
-#         if location.id == id:
-#             requested_location = location
-
-#     return requested_location
 
 def delete_location(id):
-    location_index = -1
+    with sqlite3.connect("./kennel.db") as conn:
+        db_cursor = conn.cursor()
 
-    for index, location in enumerate(LOCATIONS):
-        if location.id == id:
-            location_index = index
-
-    if location_index >= 0:
-        LOCATIONS.pop(location_index)
+        db_cursor.execute("""
+        DELETE FROM location
+        WHERE id = ?
+        """, (id, ))
 
 def update_location(id, new_location):
-    for index, location in enumerate(LOCATIONS):
-        if location.id == id:
-            LOCATIONS[index] = Location(new_location['id'], new_location['name'], new_location['address'])
-            break
+    with sqlite3.connect("./kennel.db") as conn:
+        db_cursor = conn.cursor()
+
+        db_cursor.execute("""
+        UPDATE location
+            SET
+                name = ?,
+                address = ?
+        WHERE id = ?
+        """, (new_location['name'], new_location['address'], id, ))
+
+        # Were any rows affected?
+        # Did the client send an `id` that exists?
+        rows_affected = db_cursor.rowcount
+
+    if rows_affected == 0:
+        # Forces 404 response by main module
+        return False
+    else:
+        # Forces 204 response by main module
+        return True
