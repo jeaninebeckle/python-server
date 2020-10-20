@@ -112,15 +112,6 @@ class HandleRequests(BaseHTTPRequestHandler):
         # Parse the URL
         (resource, id) = self.parse_url(self.path)
 
-        # Initialize new animal
-        # new_animal = None
-
-        # Initialize new location
-        # new_location = None
-
-        # Add a new animal to the list. Don't worry about
-        # the orange squiggle, you'll define the create_animal
-        # function next.
         if resource == "animals":
             new_animal = None
             new_animal = create_animal(post_body)
@@ -174,7 +165,6 @@ class HandleRequests(BaseHTTPRequestHandler):
         # Parse the URL
         (resource, id) = self.parse_url(self.path)
 
-        # Delete a single animal from the list
         if resource == "animals":
             update_animal(id, post_body)
         elif resource == "customers":

@@ -88,3 +88,8 @@ SELECT
 		a.address
 FROM location a
 WHERE a.id=2
+
+SELECT * from animal
+UPDATE animal
+SET breed = 'Dalmation'
+WHERE id = 1
