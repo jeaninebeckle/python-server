@@ -3,12 +3,7 @@ import json
 
 from models.animal import Animal
 
-ANIMALS = [
-    # Animal(1, 'jack', 'dog', 'good boy', 1, 1),
-    # Animal(2, 'snickers', 'dog', 'good dog', 2, 3),
-    # Animal(3, 'falafel', 'cat', 'good cat', 3, 2)     
-]
-
+ANIMALS = []
 
 def get_all_animals():
     # Open a connection to the database
