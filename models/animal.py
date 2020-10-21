@@ -10,6 +10,8 @@ class Animal():
         self.breed = breed
         self.customer_id = customer_id
         self.location_id = location_id
+        self.location = None
+        self.customer = None
 
     # def __repr__(self):
     #     return f"{self.name} is a {self.breed} and is {self.status}"
